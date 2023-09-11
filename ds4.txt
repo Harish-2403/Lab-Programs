@@ -1,0 +1,76 @@
+Stack = []
+N = int(input(“Enter the size of STACK[MAX=100]: “))
+Top = -1
+
+Def push():
+    Global top
+    If top >= n – 1:
+        Print(“\nSTACK is overflow”)
+    Else:
+        X = int(input(“Enter a value to be pushed: “))
+        Top += 1
+Stack.append(x)
+
+Def pop():
+    Global top
+    If top <= -1:
+        Print(“\nStack is underflow”)
+    Else:
+        Print(“\nThe popped element is”, stack[top])
+Stack.pop(top)
+        Top -= 1
+
+Def display():
+    Global top
+    If top >= 0:
+        Print(“\nThe elements in STACK:”)
+        For i in range(top, -1, -1):
+            Print(stack[i])
+    Else:
+        Print(“\nThe STACK is empty”)
+
+Def peek():
+    Global top
+    If top >= 0:
+        Print(“\nThe top element in STACK is:”, stack[top])
+    Else:
+        Print(“\nThe STACK is empty”)
+
+Def is_empty():
+    Global top
+    If top == -1:
+        Return True
+    Else:
+        Return False
+
+While True:
+    Print(“\nSTACK OPERATIONS USING LIST”)
+    Print(“--------------------------------“)
+    Print(“1.PUSH”)
+    Print(“2.POP”)
+    Print(“3.DISPLAY”)
+    Print(“4.PEEK”)
+    Print(“5.IS EMPTY?”)
+    Print(“6.EXIT”)
+
+    Choice = int(input(“Enter your choice: “))
+
+    If choice == 1:
+        Push()
+Elif choice == 2:
+        Pop()
+Elif choice == 3:
+        Display()
+Elif choice == 4:
+        Peek()
+Elif choice == 5:
+        If is_empty():
+            Print(“\nThe STACK is empty”)
+        Else:
+            Print(“\nThe STACK is not empty”)
+Elif choice == 6:
+        Print(“\nEXIT POINT”)
+        Break
+    Else:
+        Print(“\nPlease Enter a Valid Choice (1/2/3/4/5/6)”)
+
