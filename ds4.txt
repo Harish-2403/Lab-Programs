@@ -1,76 +1,75 @@
-Stack = []
-N = int(input(“Enter the size of STACK[MAX=100]: “))
-Top = -1
+stack = []
+n = int(input("Enter the size of STACK[MAX=100]: "))
+top = -1
 
-Def push():
-    Global top
-    If top >= n – 1:
-        Print(“\nSTACK is overflow”)
-    Else:
-        X = int(input(“Enter a value to be pushed: “))
-        Top += 1
-Stack.append(x)
+def push():
+    global top
+    if top >= n-1:
+        print("\nSTACK is overflow")
+    else:
+        x = int(input("Enter a value to be pushed: "))
+        top += 1
+    stack.append(x)
 
-Def pop():
-    Global top
-    If top <= -1:
-        Print(“\nStack is underflow”)
-    Else:
-        Print(“\nThe popped element is”, stack[top])
-Stack.pop(top)
-        Top -= 1
+def pop():
+    global top
+    if top <= -1:
+        print("\nStack is underflow")
+    else:
+        print("\nThe popped element is", stack[top])
+    stack.pop(top)
+    top -= 1
 
-Def display():
-    Global top
-    If top >= 0:
-        Print(“\nThe elements in STACK:”)
-        For i in range(top, -1, -1):
-            Print(stack[i])
-    Else:
-        Print(“\nThe STACK is empty”)
+def display():
+    global top
+    if top >= 0:
+        print("\nThe elements in STACK:")
+        for i in range(top, -1, -1):
+            print(stack[i])
+    else:
+        print("\nThe STACK is empty")
 
-Def peek():
-    Global top
-    If top >= 0:
-        Print(“\nThe top element in STACK is:”, stack[top])
-    Else:
-        Print(“\nThe STACK is empty”)
+def peek():
+    global top
+    if top >= 0:
+        print("\nThe top element in STACK is:", stack[top])
+    else:
+        print("\nThe STACK is empty")
 
-Def is_empty():
-    Global top
-    If top == -1:
-        Return True
-    Else:
-        Return False
+def is_empty():
+    global top
+    if top == -1:
+        return True
+    else:
+        return False
 
-While True:
-    Print(“\nSTACK OPERATIONS USING LIST”)
-    Print(“--------------------------------“)
-    Print(“1.PUSH”)
-    Print(“2.POP”)
-    Print(“3.DISPLAY”)
-    Print(“4.PEEK”)
-    Print(“5.IS EMPTY?”)
-    Print(“6.EXIT”)
+while True:
+    print("\nSTACK OPERATIOnS USING LIST")
+    print("--------------------------------")
+    print("1.PUSH")
+    print("2.POP")
+    print("3.DISPLAY")
+    print("4.PEEK")
+    print("5.IS EMPTY?")
+    print("6.EXIT")
 
-    Choice = int(input(“Enter your choice: “))
+    choice = int(input("Enter your choice: "))
 
-    If choice == 1:
-        Push()
-Elif choice == 2:
-        Pop()
-Elif choice == 3:
-        Display()
-Elif choice == 4:
-        Peek()
-Elif choice == 5:
-        If is_empty():
-            Print(“\nThe STACK is empty”)
-        Else:
-            Print(“\nThe STACK is not empty”)
-Elif choice == 6:
-        Print(“\nEXIT POINT”)
-        Break
-    Else:
-        Print(“\nPlease Enter a Valid Choice (1/2/3/4/5/6)”)
-
+    if choice == 1:
+        push()
+    elif choice == 2:
+            pop()
+    elif choice == 3:
+            display()
+    elif choice == 4:
+            peek()
+    elif choice == 5:
+            if is_empty():
+                print("\nThe STACK is empty")
+            else:
+                print("\nThe STACK is not empty")
+    elif choice == 6:
+            print("\nEXIT POINT")
+            break
+    else:
+        print("\nPlease Enter a Valid choice (1/2/3/4/5/6)")
