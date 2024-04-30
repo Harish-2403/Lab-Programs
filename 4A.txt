@@ -1,0 +1,66 @@
+SERVER:
+
+
+import java.io.*;
+import java.net.*;
+
+
+public class s1 {
+    public static void main (String [] args){
+
+        try {
+            while (true) {
+                ServerSocket ss = new ServerSocket(8000);
+                Socket s = ss.accept();
+                BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
+                PrintWriter w = new PrintWriter(s.getOutputStream(), true);
+                w.println("WELCOME TO CHAT TYPE 'BYE' TO CLOSE");
+                String line;
+                do {
+                    line = in.readLine();
+                    if (line != null) {
+                        w.println("Got: " + line);
+                    }
+                    System.out.println(line);
+                } while (!line.trim().equals("Bye"));
+                s.close();
+            }}
+        catch(Exception e){
+                System.out.println(e);
+            }
+
+    }
+}
+
+CLIENT:
+
+
+import java.io.*;
+import java.net.*;
+public class c1
+{
+    public static void main(String[] args)
+    {
+        try
+        {
+            Socket s = new Socket("127.0.0.1", 8000);
+            BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+            BufferedReader out = new BufferedReader(new InputStreamReader(s.getInputStream()));
+            PrintWriter w = new PrintWriter(s.getOutputStream(),true);
+            String line;
+            do{
+                line=out.readLine();
+                if(line!=null){
+                    System.out.println(line);
+                }
+                line = in.readLine();
+                w.println(line);
+            }while (!line.trim().equals("Bye"));
+            s.close();
+        }
+        catch (Exception err)
+        {
+            System.err.println(err);
+        }
+    }
+}

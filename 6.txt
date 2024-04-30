@@ -1,0 +1,78 @@
+import java.io.*;
+import java.net.*;
+
+public class dnss {
+    public static void main(String[] args) {
+        String[] hosts = {"www.google.com", "www.zoho.com"};
+        String[] ips = {"123.123.123.123", "124.124.124.124"};
+
+        try {
+            DatagramSocket socket = new DatagramSocket(8080);
+            byte[] requestBuffer = new byte[1024];
+            byte[] responseBuffer = new byte[1024];
+
+            DatagramPacket requestPacket = new DatagramPacket(requestBuffer, requestBuffer.length);
+            socket.receive(requestPacket);
+
+            String host = new String(requestPacket.getData()).trim();
+            int index = indexOfHost(host, hosts);
+
+            if (index != -1) {
+                String ip = ips[index];
+                responseBuffer = ip.getBytes();
+
+                DatagramPacket responsePacket = new DatagramPacket(responseBuffer, responseBuffer.length, requestPacket.getAddress(), 8081);
+                socket.send(responsePacket);
+            }
+
+            socket.close();
+        } catch (IOException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+
+    private static int indexOfHost(String host, String[] hosts) {
+        for (int i = 0; i < hosts.length; i++) {
+            if (hosts[i].equals(host)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+}
+
+
+
+
+
+import java.io.*;
+import java.net.*;
+
+public class dnsc {
+    public static void main(String[] args) {
+        try {
+            DatagramSocket socket = new DatagramSocket(8081);
+            byte[] requestBuffer = new byte[1024];
+            byte[] responseBuffer = new byte[1024];
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            System.out.print("Enter URL: ");
+            String url = reader.readLine().trim();
+            requestBuffer = url.getBytes();
+
+            InetAddress serverAddress = InetAddress.getLocalHost();
+            DatagramPacket requestPacket = new DatagramPacket(requestBuffer, requestBuffer.length, serverAddress, 8080);
+            socket.send(requestPacket);
+
+            DatagramPacket responsePacket = new DatagramPacket(responseBuffer, responseBuffer.length);
+            socket.receive(responsePacket);
+
+            String ip = new String(responsePacket.getData()).trim();
+            System.out.println("IP Address: " + ip);
+
+            socket.close();
+        } catch (IOException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+}
